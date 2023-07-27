@@ -1,0 +1,89 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+{% if messages %}
+<div class="messages">
+{% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+    </div>
+{% endfor %}
+</div>
+{% endif %}
+
+
+
+
+
+
+
+
+<h1 class="text-center p-2">Pelis Jordan 🤔 </h1>
+
+<section class="container">
+
+    <div class="row">
+        {% for movie in movies %}
+        
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body text-center">         
+                    <img src="/media/img/{{ movie.filename }}" width="100px" alt="Mi imagen">
+                    <h4 class="card-title "><strong>{{movie.moviename}}</strong></h4>
+                    
+                    <p class="">Publicada por:  <em><strong>{{movie.autor}}</strong></em></p>
+
+                    <em>{{movie.comentario}}</em>
+
+
+                    <p class="card-text">Publicacion: {{movie.datetime}}</p>
+                
+
+                        {% if request.user.is_authenticated %}
+
+                        {% if movies %}                          
+
+                                <p>{{ movie.title }}</p>
+                                <div
+                                class="btn-group p-4"
+                                role="group"
+                                aria-label="Basic mixed styles example"
+                              >
+                                <a class="btn btn-success" href="{% url 'update_movie' movie.id %}">Actualizar</a>
+                                <a class="btn btn-danger" href="{% url 'delete' movie.id %}">Elimar</a>
+                                </div>
+                          
+                            
+
+                        {% else %}
+                            <p>No tienes películas asociadas.</p>
+                        {% endif %}
+                    {% else %}
+                        <p>Debes iniciar sesión para ver tus películas.</p>
+                    {% endif %}
+                    
+                    
+
+                </div>
+            </div>
+        </div>
+         
+        {% endfor %}
+    </div>
+    
+
+    
+
+
+   
+        
+</section>
+
+
+
+{% endblock %}

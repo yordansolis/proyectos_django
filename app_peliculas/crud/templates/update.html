@@ -1,0 +1,78 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+
+
+
+
+
+<section class="container">
+    <div class="row">
+        <div class="col-3"></div>
+
+        <div class="col-6">
+    <h1 class="text-center">Update Movie</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'save_update' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <input type="text" 
+                    name="id" id="id" 
+                    value="{{ datos_update.id }}" 
+                    class="form-control"
+                     placeholder="ID" aria-describedby="helpId" readonly>
+                  </div>
+                  
+            <div class="mb-3">
+              <label for="" class="form-label">Name movie</label>
+              <input type="text"
+               value="{{ datos_update.name }}" 
+               name="moviename" id="movie_name"
+                class="form-control" 
+                placeholder="Movie Name"
+                 aria-describedby="helpId" 
+                 required>
+
+
+            <div class="mb-3">
+                <br />
+                <label for="" class="form-label">{{ datos_update.fecha }}</label>                
+                <input 
+                type="date"
+                 value="{{ datos_update.fecha }}"
+                  name="datetime" 
+                  id=""
+                   class="form-control" 
+                   placeholder="" aria-describedby="helpId" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Foto</label>
+                <a  target="_blank" href="/{{ datos_update.imgurl }}">{{ datos_update.file }}</a>
+           
+                <input type="file" value="{{datos_update.filename}}" 
+                name="filename"                   
+                id="" class="form-control" placeholder="" aria-describedby="helpId" />
+              </div>
+
+              <div class="btn-group p-4" role="group" aria-label="Basic mixed styles example">
+                  <button class="btn btn-success">Update</button>
+                  <a href="/" class="btn btn-danger">Cancel</a>
+              </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+    <div class="col-2"></div>
+</div>
+</section>
+
+
+
+{% endblock %}

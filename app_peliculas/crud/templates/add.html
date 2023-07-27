@@ -1,0 +1,92 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+<section class="container">
+  <div class="row">
+    <div class="col-3"></div>
+
+    <div class="col-6">
+      <h1 class="text-center">Agregar pelicula 🎥</h1>
+      <div class="card">
+        <div class="card-body">
+          <form
+            action="{% url 'add_movie' %}"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label for="autor" class="form-label">Escribe tu nombre:</label>
+              <input
+                type="text"
+                name="autor"
+                id="autor"
+                class="form-control"
+                placeholder="Escribe tu nombre"
+                aria-describedby="helpId"
+                required
+              />
+            </div>
+            
+            <div class="mb-3">
+              <label for="moviename" class="form-label">Nombre de la pelicula</label>
+              <input
+                type="text"
+                name="moviename"
+                id="moviename"
+                class="form-control"
+                placeholder="Pelicula"
+                aria-describedby="helpId"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="comentario" class="form-label">Comentario:</label>
+              <textarea class="form-control" name="comentario" id="comentario" rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Fecha:</label>
+              <input
+                type="date"
+                name="datetime"
+                id=""
+                class="form-control"
+                placeholder=""
+                aria-describedby="helpId"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Cargar imagen:</label>
+              <input
+                type="file"
+                name="filename"
+                id=""
+                class="form-control"
+                placeholder=""
+                aria-describedby="helpId"
+                required
+              />
+            </div>
+
+            <div
+              class="btn-group p-4"
+              role="group"
+              aria-label="Basic mixed styles example"
+            >
+              <button class="btn btn-primary">Guardar datos</button>
+              <a href="/" class="btn btn-danger">Cancelar </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2"></div>
+  </div>
+</section>
+
+{% endblock %}
